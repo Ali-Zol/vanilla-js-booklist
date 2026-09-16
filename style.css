@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+#main-header {
+  min-height: 10svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .book-form {
   max-width: 60%;
   margin: auto;
