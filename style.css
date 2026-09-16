@@ -3,3 +3,18 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.book-form {
+  max-width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-form label {
+  margin-bottom: 0.5rem;
+}
+
+.book-form input {
+  margin-bottom: 1rem;
+}
