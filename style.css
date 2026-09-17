@@ -27,6 +27,12 @@
   margin-bottom: 1rem;
 }
 
+.submit {
+  background-color: dodgerblue;
+  color: white;
+  padding: 0.5rem 0;
+}
+
 .book-list {
   max-width: 60%;
   margin: auto;
