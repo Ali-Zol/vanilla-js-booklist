@@ -34,13 +34,13 @@ body {
 
 .book-form input {
   margin-bottom: 1rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
 }
 
 .submit {
   background-color: dodgerblue;
   color: white;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
 }
 
 .book-list {
