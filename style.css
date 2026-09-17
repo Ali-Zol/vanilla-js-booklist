@@ -9,7 +9,7 @@ body {
 }
 
 #main-header {
-  min-height: 10svh;
+  min-height: 25svh;
   display: flex;
   justify-content: center;
   align-items: center;
