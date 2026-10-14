@@ -6,6 +6,8 @@ bookForm.addEventListener('submit', addBook);
 const titleBar = document.querySelector("#title");
 const authorBar = document.querySelector("#author");
 const isbnBar = document.querySelector("#isbn");
+const msg = document.querySelector('.msg');
+let msgTimerId = 0;
 
 function addBook(e) {
   e.preventDefault();
@@ -13,6 +15,21 @@ function addBook(e) {
   const title = titleBar.value;
   const author = authorBar.value;
   const isbn = isbnBar.value;
+
+  if(title === '' || author === '' || isbn === '') {
+    msg.textContent = 'Please enter all fields.';
+    msg.classList.add('error');
+    clearTimeout(msgTimerId);
+    msgTimerId = setTimeout(() => {
+      msg.textContent = '';
+      msg.classList.remove('error');
+    }, 3000);
+    return;
+  }
+
+  msg.textContent = '';
+  msg.classList.remove('error');
+  clearTimeout(msgTimerId);
 
   titleBar.value = '';
   authorBar.value = '';
