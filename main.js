@@ -1,13 +1,14 @@
 const bookForm = document.querySelector('.book-form');
+const bookListTbody = document.querySelector('.book-list .book-table tbody');
 
 bookForm.addEventListener('submit', addBook);
 
+const titleBar = document.querySelector("#title");
+const authorBar = document.querySelector("#author");
+const isbnBar = document.querySelector("#isbn");
+
 function addBook(e) {
   e.preventDefault();
-
-  const titleBar = document.querySelector("#title");
-  const authorBar = document.querySelector("#author");
-  const isbnBar = document.querySelector("#isbn");
 
   const title = titleBar.value;
   const author = authorBar.value;
@@ -37,8 +38,6 @@ function addBook(e) {
   newTr.appendChild(authorTd);
   newTr.appendChild(isbnTd);
   newTr.appendChild(deleteBtnTd);
-
-  const bookListTbody = document.querySelector('.book-list .book-table tbody');
 
   bookListTbody.appendChild(newTr);
 }
