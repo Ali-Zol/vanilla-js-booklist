@@ -26,9 +26,7 @@ function addBook(e) {
     return;
   }
 
-  msg.textContent = '';
-  msg.classList.remove('error');
-  clearTimeout(msgTimerId);
+  clearMessage();
 
   titleBar.value = '';
   authorBar.value = '';
@@ -67,4 +65,10 @@ function showMessage(textContent) {
     msg.textContent = '';
     msg.classList.remove('error');
   }, 3000);
+}
+
+function clearMessage() {
+  msg.textContent = '';
+  msg.classList.remove('error');
+  clearTimeout(msgTimerId);
 }
