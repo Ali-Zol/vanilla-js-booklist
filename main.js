@@ -42,6 +42,7 @@ function addBook(e) {
   isbnTd.textContent = isbn;
 
   const deleteBtn = document.createElement('button');
+  deleteBtn.type = 'button';
   deleteBtn.classList.add('delete-btn');
   deleteBtn.textContent = 'X';
 
