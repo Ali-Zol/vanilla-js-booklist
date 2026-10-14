@@ -21,6 +21,11 @@ function addBook(e) {
     return;
   }
 
+  if (!/^\d{13}$/.test(isbn)) {
+    showMessage('ISBN must be exactly 13 digits.');
+    return;
+  }
+
   msg.textContent = '';
   msg.classList.remove('error');
   clearTimeout(msgTimerId);
