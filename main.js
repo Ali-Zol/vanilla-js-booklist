@@ -12,9 +12,9 @@ let msgTimerId = 0;
 function addBook(e) {
   e.preventDefault();
 
-  const title = titleBar.value;
-  const author = authorBar.value;
-  const isbn = isbnBar.value;
+  const title = titleBar.value.trim();
+  const author = authorBar.value.trim();
+  const isbn = isbnBar.value.trim();
 
   if(title === '' || author === '' || isbn === '') {
     showMessage('Please enter all fields.');
