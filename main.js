@@ -17,13 +17,7 @@ function addBook(e) {
   const isbn = isbnBar.value;
 
   if(title === '' || author === '' || isbn === '') {
-    msg.textContent = 'Please enter all fields.';
-    msg.classList.add('error');
-    clearTimeout(msgTimerId);
-    msgTimerId = setTimeout(() => {
-      msg.textContent = '';
-      msg.classList.remove('error');
-    }, 3000);
+    showMessage('Please enter all fields.');
     return;
   }
 
@@ -57,4 +51,15 @@ function addBook(e) {
   newTr.appendChild(deleteBtnTd);
 
   bookListTbody.appendChild(newTr);
+}
+
+function showMessage(textContent) {
+  msg.classList.add('error');
+  msg.textContent = textContent;
+  clearTimeout(msgTimerId);
+
+  msgTimerId = setTimeout(() => {
+    msg.textContent = '';
+    msg.classList.remove('error');
+  }, 3000);
 }
