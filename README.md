@@ -4,7 +4,7 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
-This is a personal practice project built to strengthen my Vanilla JavaScript and DOM manipulation skills. The goal was to build a simple book list application where users can add and delete books, with proper form validation and a clean UI.
+This is a personal practice project built to strengthen my Vanilla JavaScript and DOM manipulation skills. The goal was to build a simple book list application where users can add and delete books, with proper form validation, success/error feedback, and data persistence using localStorage
 
 ## Table of contents
 
@@ -39,6 +39,8 @@ This is a personal practice project built to strengthen my Vanilla JavaScript an
 - Vanilla JavaScript (ES6+) for DOM manipulation
 - Event Delegation pattern for handling dynamically created elements
 - Regular Expressions (Regex) for form validation
+- `localStorage` for data persistence
+- Array methods (`push`, `filter`, `some`) for managing the book collection
 
 ### 📂 Folder Structure
 
@@ -75,22 +77,24 @@ This project was an excellent opportunity to move beyond basic DOM manipulation 
     ```js
     let msgTimerId = 0;
 
-    function showMessage(text) {
+    function showMessage(text, type) {
       clearTimeout(msgTimerId);
       msgTimerId = setTimeout(() => { /* ... */ }, 3000);
     }
     ```
 
 4. **Form Validation with Regex:** Instead of using multiple `if` statements for validation, I used a single Regular Expression to validate ISBN input (exactly 13 digits) — a much cleaner and more precise approach.
-5. **DRY Principle:** I refactored repeated code (like clearing error messages) into small helper functions (`showMessage`, `clearMessage`), making the `addBook` function much more readable.
+5. **Data Persistence with `localStorage`:** I learned how to save an array of book objects to `localStorage` using `JSON.stringify()` and retrieve it with `JSON.parse()`. This keeps the data even after a page refresh.
+6. **Array Methods for State Management:** I switched from directly manipulating the DOM to using an array of book objects as the single source of truth. Methods like `push`, `filter`, and `some` made adding, deleting, and validating books much cleaner.
+7. **DRY Principle:** I refactored repeated code (like showing messages, rendering books) into helper functions (`showMessage`, `renderBooks`), making the main functions more readable.
 
 ### 🤝 AI Collaboration
 
 I used an AI mentor (DeepSeek) throughout this project, but with a strict learning-focused approach:
 
-- **How I used it:** Instead of asking for complete code solutions, I used the AI to review my code, explain why certain JavaScript behaviors occur (like the `setTimeout` race condition), and guide me toward finding the right properties and methods myself.
+- **How I used it:** Instead of asking for complete code solutions, I used the AI to review my code, explain why certain JavaScript behaviors occur (like the `setTimeout` race condition or event delegation), and guide me toward finding the right methods myself.
 
-- **Outcome:** This collaborative approach ensured that I actually understood the underlying concepts — such as Event Delegation and `closest()` — rather than just copying and pasting code. Every line of code in this project was written by me.
+- **Outcome:** This collaborative approach ensured that I actually understood the underlying concepts — such as Event Delegation, `closest()`, and `localStorage` — rather than just copying and pasting code. Every line of code in this project was written by me.
 
 ## 📄 License
 
