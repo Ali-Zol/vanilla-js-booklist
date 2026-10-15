@@ -27,6 +27,7 @@ This is a personal practice project built to strengthen my Vanilla JavaScript an
 
 ### 🔗 Links
 
+- **Live Demo**: [View Live](https://ali-zol.github.io/vanilla-js-booklist/)
 - **Repository**: [GitHub Repo](https://github.com/Ali-Zol/vanilla-js-booklist.git)
 
 ## 🛠️ My process
