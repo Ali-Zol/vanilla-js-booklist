@@ -1,6 +1,8 @@
 const bookForm = document.querySelector('.book-form');
 const bookListTbody = document.querySelector('.book-list .book-table tbody');
 
+let books = [];
+
 bookForm.addEventListener('submit', addBook);
 bookListTbody.addEventListener('click', deleteBook);
 
@@ -33,29 +35,11 @@ function addBook(e) {
   authorBar.value = '';
   isbnBar.value = '';
 
-  const titleTd = document.createElement('td');
-  const authorTd = document.createElement('td');
-  const isbnTd = document.createElement('td');
-  const deleteBtnTd = document.createElement('td');
+  const book = {title, author, isbn};
+  books.push(book);
 
-  titleTd.textContent = title;
-  authorTd.textContent = author;
-  isbnTd.textContent = isbn;
-
-  const deleteBtn = document.createElement('button');
-  deleteBtn.type = 'button';
-  deleteBtn.classList.add('delete-btn');
-  deleteBtn.textContent = 'X';
-
-  deleteBtnTd.appendChild(deleteBtn);
-
-  const newTr = document.createElement('tr');
-  newTr.appendChild(titleTd);
-  newTr.appendChild(authorTd);
-  newTr.appendChild(isbnTd);
-  newTr.appendChild(deleteBtnTd);
-
-  bookListTbody.appendChild(newTr);
+  saveBooks();
+  renderBooks();
 }
 
 function showMessage(textContent) {
@@ -85,6 +69,52 @@ function deleteBook(e) {
     if(!confirm('Are you sure you want to delete this book?'))
       return;
     
-    tr.remove();
+    const isbnToDelete = tr.children[2].textContent;
+    
+    books = books.filter(b => b.isbn !== isbnToDelete);
+
+    saveBooks();
+    renderBooks();
   }
 }
+
+function loadBooks() {
+  return JSON.parse(localStorage.getItem('books')) || [];
+}
+
+function saveBooks() {
+  localStorage.setItem('books', JSON.stringify(books));
+}
+
+function renderBooks() {
+  bookListTbody.innerHTML = '';
+
+  books.forEach(b => {
+    const titleTd = document.createElement('td');
+    const authorTd = document.createElement('td');
+    const isbnTd = document.createElement('td');
+    
+    titleTd.textContent = b.title;
+    authorTd.textContent = b.author;
+    isbnTd.textContent = b.isbn;
+    
+    const deleteBtn = document.createElement('button');
+    deleteBtn.type = 'button';
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.textContent = 'X';
+    
+    const deleteBtnTd = document.createElement('td');
+    deleteBtnTd.appendChild(deleteBtn);
+
+    const newTr = document.createElement('tr');
+    newTr.appendChild(titleTd);
+    newTr.appendChild(authorTd);
+    newTr.appendChild(isbnTd);
+    newTr.appendChild(deleteBtnTd);
+
+    bookListTbody.appendChild(newTr);
+  });
+}
+
+books = loadBooks();
+renderBooks();
