@@ -29,6 +29,11 @@ function addBook(e) {
     return;
   }
 
+  if(books.some(b => b.isbn === isbn)) {
+    showMessage('This ISBN already exists.');
+    return;
+  }
+
   clearMessage();
 
   titleBar.value = '';
