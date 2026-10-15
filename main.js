@@ -2,6 +2,7 @@ const bookForm = document.querySelector('.book-form');
 const bookListTbody = document.querySelector('.book-list .book-table tbody');
 
 bookForm.addEventListener('submit', addBook);
+bookListTbody.addEventListener('click', deleteBook);
 
 const titleBar = document.querySelector("#title");
 const authorBar = document.querySelector("#author");
@@ -72,4 +73,18 @@ function clearMessage() {
   msg.textContent = '';
   msg.classList.remove('error');
   clearTimeout(msgTimerId);
+}
+
+function deleteBook(e) {
+  if(!e.target.closest('.delete-btn'))
+    return;
+
+  const tr = e.target.closest('tr');
+  
+  if(tr) {
+    if(!confirm('Are you sure you want to delete this book?'))
+      return;
+    
+    tr.remove();
+  }
 }
