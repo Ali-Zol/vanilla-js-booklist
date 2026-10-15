@@ -20,48 +20,43 @@ function addBook(e) {
   const isbn = isbnBar.value.trim();
 
   if(title === '' || author === '' || isbn === '') {
-    showMessage('Please enter all fields.');
+    showMessage('Please enter all fields.', 'error');
     return;
   }
 
   if (!/^\d{13}$/.test(isbn)) {
-    showMessage('ISBN must be exactly 13 digits.');
+    showMessage('ISBN must be exactly 13 digits.', 'error');
     return;
   }
 
   if(books.some(b => b.isbn === isbn)) {
-    showMessage('This ISBN already exists.');
+    showMessage('This ISBN already exists.', 'error');
     return;
   }
 
-  clearMessage();
+  const book = {title, author, isbn};
+  books.push(book);
+  
+  saveBooks();
+  renderBooks();
+
+  showMessage('Book added successfully.', 'success'); 
 
   titleBar.value = '';
   authorBar.value = '';
   isbnBar.value = '';
-
-  const book = {title, author, isbn};
-  books.push(book);
-
-  saveBooks();
-  renderBooks();
 }
 
-function showMessage(textContent) {
-  msg.classList.add('error');
+function showMessage(textContent, className) {
+  msg.classList.remove('error', 'success');
+  msg.classList.add('message', className);
   msg.textContent = textContent;
   clearTimeout(msgTimerId);
 
   msgTimerId = setTimeout(() => {
     msg.textContent = '';
-    msg.classList.remove('error');
+    msg.classList.remove('message', 'error', 'success');
   }, 3000);
-}
-
-function clearMessage() {
-  msg.textContent = '';
-  msg.classList.remove('error');
-  clearTimeout(msgTimerId);
 }
 
 function deleteBook(e) {
@@ -80,6 +75,8 @@ function deleteBook(e) {
 
     saveBooks();
     renderBooks();
+
+    showMessage('Book removed successfully.', 'success');
   }
 }
 
